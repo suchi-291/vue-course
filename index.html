@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Modern family</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-if="characterList.length == 0">There are no characters</p>
+      <ul v-else>
+        <li v-for="character in characterList">{{character.name,}}</li>
+      </ul>
+      <p>
+        <span v-for="(character, index) in characterList"
+          >{{character.name}},&nbsp;
+        </span>
+      </p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data: () => ({
+          characterList: [
+            { name: "Jay Pritchett" },
+            { name: "Gloria Delgado Pritchett" },
+            { name: "Claire Dunphy" },
+            { name: "Phil Dunphy" },
+            { name: "Mitchell Pritchett" },
+            { name: "Cameron Tucker" },
+            { name: "Haley Dunphy" },
+            { name: "Alex Dunphy" },
+          ],
+        }),
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
