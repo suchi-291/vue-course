@@ -7,15 +7,27 @@
   </head>
   <body>
     <div id="app">
+      <label for="character-name">Name &nbsp;</label>
+      <input
+        type="text"
+        v-model="newCharacter.name"
+        @keyUp.enter="addNew"
+      /><br /><br />
       <p v-if="characterList.length == 0">There are no characters</p>
       <ul v-else>
-        <li v-for="character in characterList">{{character.name,}}</li>
+        <li v-for="character in characterList">
+          {{character.name}}&nbsp;
+          <button @click="favCharacterList.push(character)">Favorite</button>
+        </li>
       </ul>
-      <p>
-        <span v-for="(character, index) in characterList"
-          >{{character.name}},&nbsp;
-        </span>
+
+      <h2>Favorite Characters:</h2>
+      <p v-if="favCharacterList.length == 0">
+        There are no favorite characters
       </p>
+      <ul v-else>
+        <li v-for="character in favCharacterList">{{character.name}}&nbsp;</li>
+      </ul>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
@@ -32,7 +44,16 @@
             { name: "Haley Dunphy" },
             { name: "Alex Dunphy" },
           ],
+          favCharacterList: [],
+          newCharacter: {
+            name: "",
+          },
         }),
+        methods: {
+          addNew() {
+            this.characterList.push(this.newCharacter);
+          },
+        },
       });
       app.mount("#app");
     </script>
