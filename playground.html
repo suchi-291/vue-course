@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Counter</h1>
+      <p>{{count}}</p>
+      <button @click="incrementCount">Increment Count</button>
+      <div>
+        <label for="incrementAmount">Increment by:</label>
+        <input type="number" v-model="incrementAmount" />
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data: () => ({
+          count: 1,
+          incrementAmount: 5,
+        }),
+        methods: {
+          incrementCount() {
+            this.count += this.incrementAmount;
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
