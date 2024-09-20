@@ -7,6 +7,12 @@
   </head>
   <body>
     <div id="app">
+      <h2>Statistics</h2>
+      <ul>
+        <li>Senior: {{seniorStat}}</li>
+        <li>Adult: {{adultStat}}</li>
+        <li>Young: {{youngStat}}</li>
+      </ul>
       <label for="character-name">Name &nbsp;</label>
       <input
         type="text"
@@ -35,20 +41,46 @@
       const app = createApp({
         data: () => ({
           characterList: [
-            { name: "Jay Pritchett" },
-            { name: "Gloria Delgado Pritchett" },
-            { name: "Claire Dunphy" },
-            { name: "Phil Dunphy" },
-            { name: "Mitchell Pritchett" },
-            { name: "Cameron Tucker" },
-            { name: "Haley Dunphy" },
-            { name: "Alex Dunphy" },
+            { name: "Jay Pritchett", age: 63 },
+            { name: "Gloria Delgado Pritchett", age: 46 },
+            { name: "Claire Dunphy", age: 34 },
+            { name: "Phil Dunphy", age: 42 },
+            { name: "Mitchell Pritchett", age: 36 },
+            { name: "Haley Dunphy", age: 18 },
+            { name: "Alex Dunphy", age: 16 },
           ],
           favCharacterList: [],
           newCharacter: {
             name: "",
           },
         }),
+
+        computed: {
+          seniorStat() {
+            return this.characterList.filter((character) => {
+              if (character.age > 50) {
+                return true;
+              }
+            }).length;
+          },
+
+          adultStat() {
+            return this.characterList.filter((character) => {
+              if (character.age > 30) {
+                return true;
+              }
+            }).length;
+          },
+
+          youngStat() {
+            return this.characterList.filter((character) => {
+              if (character.age < 30) {
+                return true;
+              }
+            }).length;
+          },
+        },
+
         methods: {
           addNew() {
             this.characterList.push(this.newCharacter);
