@@ -7,7 +7,7 @@
   </head>
   <body>
     <div id="app">
-      <h1>Counter</h1>
+      <h1>{{displayTitle}}</h1>
       <p>{{count}}</p>
       <button @click="incrementCount">Increment Count</button>
       <div>
@@ -22,10 +22,21 @@
         data: () => ({
           count: 1,
           incrementAmount: 5,
+          counterTitle: "Counter Standard",
         }),
         methods: {
           incrementCount() {
             this.count += this.incrementAmount;
+          },
+        },
+
+        computed: {
+          displayTitle() {
+            if (this.count > 20) {
+              return "Counter Standard - very long";
+            } else {
+              return "Counter Standard";
+            }
           },
         },
       });
